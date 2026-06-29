@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ventra Technology Pvt Ltd – Odoo ERP Partner</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --purple:#7C3AED;--purple-light:#A78BFA;--purple-ultra:#EDE9FE;
+  --purple-soft:#F5F3FF;--purple-mid:#8B5CF6;--purple-dark:#5B21B6;
+  --white:#FFFFFF;--gray-50:#FAFAFA;--gray-100:#F4F4F5;
+  --gray-200:#E4E4E7;--gray-400:#A1A1AA;--gray-600:#52525B;
+  --gray-800:#27272A;--text:#18181B;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--white);color:var(--text);overflow-x:hidden}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,0.95);backdrop-filter:blur(16px);border-bottom:1px solid var(--gray-200);display:flex;align-items:center;justify-content:space-between;padding:0 6%;height:70px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-mark{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--purple),var(--purple-light));display:flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif;font-weight:900;font-size:15px;color:white;letter-spacing:-0.5px}
+.logo-text{font-family:'Nunito',sans-serif;font-weight:800;font-size:18px;color:var(--text);letter-spacing:-0.3px}
+.logo-text span{color:var(--purple)}
+.nav-links{display:flex;gap:36px;list-style:none}
+.nav-links a{font-size:14px;font-weight:500;color:var(--gray-600);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--purple)}
+.nav-btn{background:var(--purple);color:white;border:none;padding:10px 24px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;letter-spacing:0.2px}
+.nav-btn:hover{background:var(--purple-dark);transform:translateY(-1px);box-shadow:0 4px 16px rgba(124,58,237,0.3)}
+
+.hero{min-height:100vh;background:linear-gradient(160deg,var(--purple-soft) 0%,var(--white) 55%);display:flex;align-items:center;padding:110px 6% 80px;position:relative;overflow:hidden}
+.hero-blob{position:absolute;top:-120px;right:-80px;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(167,139,250,0.18) 0%,transparent 68%);pointer-events:none}
+.hero-blob2{position:absolute;bottom:-80px;left:5%;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(124,58,237,0.07) 0%,transparent 65%);pointer-events:none}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;width:100%;position:relative;z-index:1;max-width:1200px}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--purple-ultra);border:1px solid rgba(124,58,237,0.2);padding:6px 16px;border-radius:100px;margin-bottom:24px}
+.hero-eyebrow-dot{width:7px;height:7px;border-radius:50%;background:var(--purple);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+.hero-eyebrow span{font-size:12px;font-weight:600;color:var(--purple);letter-spacing:0.5px;text-transform:uppercase}
+.hero-title{font-family:'Nunito',sans-serif;font-size:clamp(36px,4.5vw,58px);font-weight:900;line-height:1.08;letter-spacing:-1.5px;color:var(--text);margin-bottom:20px}
+.hero-title .hl{color:var(--purple)}
+.hero-desc{font-size:17px;color:var(--gray-600);line-height:1.78;margin-bottom:36px;font-weight:400;max-width:490px}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:48px}
+.btn-p{background:var(--purple);color:white;border:none;padding:14px 32px;border-radius:9px;font-size:15px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .2s;box-shadow:0 4px 20px rgba(124,58,237,0.25)}
+.btn-p:hover{background:var(--purple-dark);transform:translateY(-2px);box-shadow:0 8px 28px rgba(124,58,237,0.35)}
+.btn-o{background:white;color:var(--purple);border:2px solid var(--purple);padding:13px 28px;border-radius:9px;font-size:15px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .2s}
+.btn-o:hover{background:var(--purple-ultra);transform:translateY(-2px)}
+.hero-stats{display:flex;gap:40px}
+.hstat-num{font-family:'Nunito',sans-serif;font-size:34px;font-weight:900;color:var(--text);letter-spacing:-1px}
+.hstat-num span{color:var(--purple)}
+.hstat-lbl{font-size:13px;color:var(--gray-400);margin-top:2px;font-weight:400}
+.hero-visual{position:relative}
+.hero-card{background:white;border-radius:20px;box-shadow:0 20px 60px rgba(124,58,237,0.12),0 4px 16px rgba(0,0,0,0.06);overflow:hidden}
+.hcard-head{background:linear-gradient(135deg,var(--purple),var(--purple-mid));padding:22px 24px;color:white;display:flex;justify-content:space-between;align-items:center}
+.hcard-title{font-family:'Nunito',sans-serif;font-weight:800;font-size:15px}
+.hcard-badge{background:rgba(255,255,255,0.2);font-size:11px;padding:4px 12px;border-radius:100px;font-weight:600}
+.hcard-body{padding:22px 24px}
+.hcard-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--gray-100)}
+.hcard-row:last-child{border:none}
+.hcard-lbl{font-size:13px;color:var(--gray-400)}
+.hcard-val{font-size:13px;font-weight:600;color:var(--text)}
+.hcard-val.green{color:#10B981}
+.hcard-val.purple{color:var(--purple)}
+.hcard-total{display:flex;justify-content:space-between;align-items:center;margin-top:14px;padding-top:14px;border-top:2px solid var(--purple-ultra)}
+.hcard-total-lbl{font-weight:600;font-size:14px}
+.hcard-total-val{font-family:'Nunito',sans-serif;font-size:22px;font-weight:900;color:var(--purple)}
+.float-chip{position:absolute;background:white;border-radius:12px;padding:10px 16px;box-shadow:0 8px 24px rgba(0,0,0,0.1);display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;color:var(--text);animation:float 3s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.float-chip .dot{width:8px;height:8px;border-radius:50%}
+.chip1{top:-18px;right:-12px;animation-delay:0s}
+.chip2{bottom:30px;left:-20px;animation-delay:1.2s}
+
+/* ── TRUSTED BY — Hexalyze style marquee ── */
+.trusted-section{
+  padding: 56px 0;
+  background: var(--white);
+  border-top: 1px solid var(--gray-200);
+  border-bottom: 1px solid var(--gray-200);
+  overflow: hidden;
+}
+.trusted-label{
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gray-400);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 36px;
+}
+.marquee-track{
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+.marquee-track:hover{ animation-play-state: paused; }
+@keyframes marquee{
+  from{ transform: translateX(0); }
+  to{ transform: translateX(-50%); }
+}
+.client-logo{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 40px;
+  padding: 14px 28px;
+  border-radius: 14px;
+  border: 1.5px solid var(--gray-200);
+  background: var(--white);
+  transition: border-color .2s, box-shadow .2s;
+  min-width: 160px;
+  cursor: default;
+}
+.client-logo:hover{
+  border-color: var(--purple-light);
+  box-shadow: 0 4px 18px rgba(124,58,237,0.1);
+}
+.client-logo-inner{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.client-logo-icon{
+  font-size: 22px;
+  line-height: 1;
+}
+.client-logo-name{
+  font-family: 'Nunito', sans-serif;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--gray-600);
+  white-space: nowrap;
+  letter-spacing: 0.2px;
+}
+.client-logo-country{
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--gray-400);
+  letter-spacing: 0.5px;
+}
+
+/* rest of site */
+.sec{padding:96px 6%}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--purple);margin-bottom:14px;display:block}
+.h2{font-family:'Nunito',sans-serif;font-size:clamp(28px,3vw,44px);font-weight:900;letter-spacing:-1px;line-height:1.15;margin-bottom:14px;color:var(--text)}
+.lead{font-size:17px;color:var(--gray-600);line-height:1.75;max-width:540px}
+.services-bg{background:var(--gray-50)}
+.svc-head{text-align:center;margin-bottom:56px}
+.svc-head .lead{margin:0 auto}
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:22px}
+.svc-card{background:white;border-radius:18px;padding:32px;border:1.5px solid var(--gray-200);transition:all .25s;position:relative;overflow:hidden}
+.svc-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--purple),var(--purple-light));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.svc-card:hover{transform:translateY(-5px);border-color:var(--purple-light);box-shadow:0 16px 48px rgba(124,58,237,0.1)}
+.svc-card:hover::before{transform:scaleX(1)}
+.svc-icon{width:54px;height:54px;border-radius:14px;background:var(--purple-ultra);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:20px}
+.svc-title{font-family:'Nunito',sans-serif;font-size:19px;font-weight:800;margin-bottom:10px;color:var(--text)}
+.svc-desc{font-size:14px;color:var(--gray-600);line-height:1.7;margin-bottom:18px}
+.svc-list{list-style:none}
+.svc-list li{font-size:13px;color:var(--gray-600);padding:4px 0;display:flex;align-items:center;gap:10px}
+.svc-list li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--purple);flex-shrink:0}
+.modules-bg{background:white}
+.mod-intro{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-bottom:60px}
+.mod-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.mod-card{border:1.5px solid var(--gray-200);border-radius:16px;padding:24px;background:white;transition:all .22s;position:relative;overflow:hidden;cursor:default}
+.mod-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--purple);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.mod-card:hover{border-color:var(--purple-light);transform:translateY(-3px);box-shadow:0 12px 36px rgba(124,58,237,0.1)}
+.mod-card:hover::after{transform:scaleX(1)}
+.mod-top{display:flex;align-items:center;gap:14px;margin-bottom:10px}
+.mod-icon-wrap{width:44px;height:44px;border-radius:11px;background:var(--purple-ultra);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.mod-name{font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;color:var(--text)}
+.mod-desc{font-size:13px;color:var(--gray-600);line-height:1.6;margin-bottom:14px}
+.mod-tags{display:flex;flex-wrap:wrap;gap:6px}
+.mod-tag{font-size:11px;font-weight:600;padding:3px 10px;border-radius:100px;background:var(--purple-ultra);color:var(--purple);border:1px solid rgba(124,58,237,0.2)}
+.inv-bg{background:linear-gradient(160deg,var(--purple-soft) 0%,var(--white) 100%)}
+.inv-inner{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.inv-feat-list{display:flex;flex-direction:column;gap:18px;margin-top:32px}
+.inv-feat{display:flex;gap:14px;align-items:flex-start}
+.inv-feat-ic{width:40px;height:40px;border-radius:10px;background:var(--purple-ultra);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px}
+.inv-feat-tx h4{font-size:15px;font-weight:600;color:var(--text);margin-bottom:3px}
+.inv-feat-tx p{font-size:13px;color:var(--gray-600);line-height:1.6}
+.inv-mock{background:white;border-radius:20px;padding:28px;box-shadow:0 24px 64px rgba(124,58,237,0.12),0 4px 16px rgba(0,0,0,0.05);border:1.5px solid var(--purple-ultra)}
+.inv-mock-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
+.inv-mock-title{font-family:'Nunito',sans-serif;font-weight:900;font-size:16px;color:var(--purple)}
+.inv-mock-badge{background:#ECFDF5;color:#10B981;font-size:11px;font-weight:600;padding:5px 12px;border-radius:100px;border:1px solid #A7F3D0}
+.inv-divider{height:1px;background:var(--gray-100);margin:14px 0}
+.inv-r{display:flex;justify-content:space-between;margin:8px 0}
+.inv-r-l{font-size:13px;color:var(--gray-400)}
+.inv-r-v{font-size:13px;font-weight:600;color:var(--text)}
+.inv-total{display:flex;justify-content:space-between;margin-top:14px;padding-top:14px;border-top:2px solid var(--purple-ultra)}
+.inv-total-l{font-size:14px;font-weight:600;color:var(--text)}
+.inv-total-v{font-family:'Nunito',sans-serif;font-size:22px;font-weight:900;color:var(--purple)}
+.inv-foot{margin-top:18px;padding:12px 14px;background:var(--purple-ultra);border-radius:10px;display:flex;justify-content:space-between;align-items:center}
+.inv-foot-t{font-size:12px;color:var(--gray-400)}
+.inv-foot-btn{font-size:12px;color:var(--purple);font-weight:600;cursor:pointer}
+.stats-bg{background:var(--purple)}
+.stats-inner{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.stat-box{padding:40px 32px;text-align:center;border-right:1px solid rgba(255,255,255,0.12)}
+.stat-box:last-child{border:none}
+.stat-big{font-family:'Nunito',sans-serif;font-size:48px;font-weight:900;color:white;letter-spacing:-2px;line-height:1}
+.stat-big span{color:rgba(255,255,255,0.6);font-size:32px}
+.stat-sub{font-size:14px;color:rgba(255,255,255,0.6);margin-top:8px;font-weight:400}
+.why-bg{background:var(--gray-50)}
+.why-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.why-visual-card{background:white;border-radius:20px;padding:36px;border:1.5px solid var(--gray-200);box-shadow:0 8px 32px rgba(124,58,237,0.06)}
+.cert-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.cert-chip{font-size:12px;font-weight:600;padding:6px 14px;border-radius:8px;background:var(--purple-ultra);color:var(--purple);border:1px solid rgba(124,58,237,0.2)}
+.cert-chip.dark{background:var(--purple);color:white;border-color:var(--purple)}
+.why-list{display:flex;flex-direction:column;gap:24px;margin-top:32px}
+.why-item{display:flex;gap:16px;align-items:flex-start}
+.why-num{font-family:'Nunito',sans-serif;font-size:13px;font-weight:900;color:white;background:var(--purple);width:30px;height:30px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.why-item h4{font-size:16px;font-weight:600;margin-bottom:5px;color:var(--text)}
+.why-item p{font-size:14px;color:var(--gray-600);line-height:1.65}
+.process-bg{background:white}
+.process-head{text-align:center;margin-bottom:60px}
+.process-head .lead{margin:0 auto}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative}
+.steps::before{content:'';position:absolute;top:36px;left:calc(12.5%);right:calc(12.5%);height:2px;background:linear-gradient(90deg,var(--purple) 0%,var(--purple-light) 100%);z-index:0}
+.step{text-align:center;padding:0 8px;position:relative;z-index:1}
+.step-num{width:72px;height:72px;border-radius:50%;margin:0 auto 20px;background:white;border:2.5px solid var(--purple);display:flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif;font-size:22px;font-weight:900;color:var(--purple);box-shadow:0 4px 16px rgba(124,58,237,0.15)}
+.step-num.filled{background:var(--purple);color:white}
+.step-title{font-family:'Nunito',sans-serif;font-size:16px;font-weight:800;margin-bottom:8px;color:var(--text)}
+.step-desc{font-size:13px;color:var(--gray-600);line-height:1.6}
+.cta-bg{background:linear-gradient(135deg,var(--purple-dark) 0%,var(--purple) 60%,var(--purple-mid) 100%);text-align:center;padding:96px 6%;position:relative;overflow:hidden}
+.cta-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:300px;border-radius:50%;background:radial-gradient(ellipse,rgba(255,255,255,0.08) 0%,transparent 70%);pointer-events:none}
+.cta-bg .h2{color:white;margin:0 auto 14px}
+.cta-lead{font-size:18px;color:rgba(255,255,255,0.7);max-width:500px;margin:0 auto 40px;line-height:1.7}
+.cta-acts{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn-white{background:white;color:var(--purple);border:none;padding:14px 32px;border-radius:9px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn-white:hover{background:var(--purple-ultra);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:white;border:2px solid rgba(255,255,255,0.4);padding:13px 28px;border-radius:9px;font-size:15px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.btn-ghost:hover{border-color:white;background:rgba(255,255,255,0.08);transform:translateY(-2px)}
+.contact-bg{background:var(--gray-50)}
+.contact-inner{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start}
+.contact-det{display:flex;gap:14px;margin-bottom:22px;align-items:flex-start}
+.contact-ic{width:44px;height:44px;border-radius:12px;background:var(--purple-ultra);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px}
+.contact-det h4{font-size:14px;font-weight:600;margin-bottom:2px;color:var(--text)}
+.contact-det p{font-size:14px;color:var(--gray-600)}
+.contact-form{background:white;border-radius:20px;padding:36px;border:1.5px solid var(--gray-200);box-shadow:0 8px 32px rgba(124,58,237,0.06)}
+.fg{margin-bottom:18px}
+.fg label{display:block;font-size:13px;font-weight:600;margin-bottom:7px;color:var(--gray-800)}
+.fg input,.fg select,.fg textarea{width:100%;padding:12px 14px;border:1.5px solid var(--gray-200);border-radius:9px;font-size:14px;font-family:'Inter',sans-serif;background:var(--gray-50);color:var(--text);outline:none;transition:all .2s}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--purple);background:white;box-shadow:0 0 0 3px rgba(124,58,237,0.1)}
+.fg textarea{resize:none;height:90px}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+footer{background:var(--gray-800);padding:64px 6% 32px}
+.footer-top{display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.footer-brand p{font-size:13px;color:rgba(255,255,255,0.35);line-height:1.75;max-width:260px;margin-top:14px}
+.footer-col h4{font-size:12px;font-weight:700;color:rgba(255,255,255,0.5);margin-bottom:16px;text-transform:uppercase;letter-spacing:1.5px}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:10px}
+.footer-col a{font-size:13px;color:rgba(255,255,255,0.4);text-decoration:none;transition:color .2s}
+.footer-col a:hover{color:rgba(255,255,255,0.8)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.07);padding-top:28px;display:flex;justify-content:space-between;align-items:center}
+.footer-copy{font-size:12px;color:rgba(255,255,255,0.25)}
+.footer-bdgs{display:flex;gap:10px}
+.footer-bdg{font-size:11px;color:rgba(255,255,255,0.3);border:1px solid rgba(255,255,255,0.1);padding:4px 12px;border-radius:6px}
+@media(max-width:768px){.nav-links{display:none}.hero-inner,.inv-inner,.why-inner,.contact-inner,.footer-top{grid-template-columns:1fr;gap:40px}.hero-visual{display:none}.mod-intro{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr}.steps::before{display:none}.stats-inner{grid-template-columns:1fr 1fr}.fr{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#">
+    <div class="logo-mark">VT</div>
+    <div class="logo-text">Ventra <span>Technology</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#modules">Modules</a></li>
+    <li><a href="#invoicing">e-Invoice</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get Free Demo</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-blob"></div>
+  <div class="hero-blob2"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-dot"></div>
+        <span>Certified Odoo Implementation Partner</span>
+      </div>
+      <h1 class="hero-title">Smarter Business<br>Starts with<br><span class="hl">Odoo ERP.</span></h1>
+      <p class="hero-desc">Ventra Technology helps businesses across Pakistan and the Gulf region implement, customize, and optimize Odoo — so every department runs on one powerful platform.</p>
+      <div class="hero-actions">
+        <a class="btn-p" href="#contact">Start Your Project →</a>
+        <a class="btn-o" href="#services">Our Services</a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="hstat-num">50<span>+</span></div><div class="hstat-lbl">Implementations</div></div>
+        <div><div class="hstat-num">15<span>+</span></div><div class="hstat-lbl">Industries</div></div>
+        <div><div class="hstat-num">98<span>%</span></div><div class="hstat-lbl">Satisfaction</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="float-chip chip1"><div class="dot" style="background:#10B981"></div>FBR Verified ✓</div>
+      <div class="float-chip chip2"><div class="dot" style="background:var(--purple)"></div>Odoo 17 Ready</div>
+      <div class="hero-card">
+        <div class="hcard-head">
+          <div class="hcard-title">Ventra · Live Dashboard</div>
+          <div class="hcard-badge">● Live</div>
+        </div>
+        <div class="hcard-body">
+          <div class="hcard-row"><span class="hcard-lbl">Today's Sales</span><span class="hcard-val green">PKR 2,84,500</span></div>
+          <div class="hcard-row"><span class="hcard-lbl">Open Purchase Orders</span><span class="hcard-val">12 POs</span></div>
+          <div class="hcard-row"><span class="hcard-lbl">Inventory Value</span><span class="hcard-val purple">PKR 18.4M</span></div>
+          <div class="hcard-row"><span class="hcard-lbl">Pending Invoices</span><span class="hcard-val">8 Drafts</span></div>
+          <div class="hcard-row"><span class="hcard-lbl">FBR e-Invoices Sent</span><span class="hcard-val green">147 Today</span></div>
+          <div class="hcard-total"><span class="hcard-total-lbl">Monthly Revenue</span><span class="hcard-total-val">PKR 6.2M</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TRUSTED BY — Hexalyze marquee style ── -->
+<div class="trusted-section">
+  <div class="trusted-label">Clients We Have Served</div>
+  <div style="overflow:hidden;position:relative">
+    <!-- fade edges -->
+    <div style="position:absolute;left:0;top:0;bottom:0;width:80px;background:linear-gradient(90deg,white,transparent);z-index:2;pointer-events:none"></div>
+    <div style="position:absolute;right:0;top:0;bottom:0;width:80px;background:linear-gradient(270deg,white,transparent);z-index:2;pointer-events:none"></div>
+    <div class="marquee-track">
+      <!-- set 1 -->
+      <div class="client-logo"><div class="client-logo-inner"><div class="client-logo-icon">🏢</div><div class="client-logo-name">Al-Noor Traders</div><div class="client-logo-country">Karachi, PK</div></div></div>
+      <div class="client-logo"><div class="client-logo-inner"><div class="client-logo-icon">⚙️</div><div class="client-logo-name">Pak Mfg Co.</div><div class="client-logo-country">Lahore, PK</div></div></div>
+      <div class="client-logo"><div class="client-logo-inner"><div class="client-logo-icon">💻</div><div class="client-logo-name">Gulf Tech LLC</div><div class="client-logo-country">Riyadh, KSA</div></div></div>
+      <div class="client-logo"><div class="client-logo-inner"><div class="client-logo-icon">🛒</div><div class="client-logo-name">RetailChain Ltd.</div><div class="client-logo-country">Karachi, PK</div></div></div>
+      <div class="client-logo"><div class="client-logo-inner"><div class="client-logo-icon">🚚</div><div class="client-logo-name">Pak Logistics</div><div class="client-logo-country">Islamabad, PK</div></div></div>
+      <div class="client-logo"><div class="client-logo-inner"><div class="client-logo-icon">🔌</div><div class="client-logo-name">SOL Systems</div><div class="client-logo-country">Riyadh, KSA</div></div></div>
+      <div class="client-logo"><div class="client-logo-inner"><div class="client-logo-icon">🏗️</div><div class="client-logo-name">Compuage LLC</div><div class="client-logo-country">Dubai, UAE</div></div></div>
+      <div class="client-logo"><div class="client-logo-inner"><div class="client-logo-icon">🌿</div><div class="client-logo-name">Agri Solutions</div><div class="client-logo-country">Faisalabad, PK</div></div></div>
+      <!-- set 2 — duplicate for seamless loop -->
+      <div class="client-logo"><div class="client-logo-inner"><div class="client-logo-icon">🏢</div><div class="client-logo-name">Al-Noor Traders</div><div class="client-logo-country">Karachi, PK</div></div></div>
+      <div class="client-logo"><div class="client-logo-inner"><div class="client-logo-icon">⚙️</div><div class="client-logo-name">Pak Mfg Co.</div><div class="client-logo-country">Lahore, PK</div></div></div>
+      <div class="client-logo"><div class="client-logo-inner"><div class="client-logo-icon">💻</div><div class="client-logo-name">Gulf Tech LLC</div><div class="client-logo-country">Riyadh, KSA</div></div></div>
+      <div class="client-logo"><div class="client-logo-inner"><div class="client-logo-icon">🛒</div><div class="client-logo-name">RetailChain Ltd.</div><div class="client-logo-country">Karachi, PK</div></div></div>
+      <div class="client-logo"><div class="client-logo-inner"><div class="client-logo-icon">🚚</div><div class="client-logo-name">Pak Logistics</div><div class="client-logo-country">Islamabad, PK</div></div></div>
+      <div class="client-logo"><div class="client-logo-inner"><div class="client-logo-icon">🔌</div><div class="client-logo-name">SOL Systems</div><div class="client-logo-country">Riyadh, KSA</div></div></div>
+      <div class="client-logo"><div class="client-logo-inner"><div class="client-logo-icon">🏗️</div><div class="client-logo-name">Compuage LLC</div><div class="client-logo-country">Dubai, UAE</div></div></div>
+      <div class="client-logo"><div class="client-logo-inner"><div class="client-logo-icon">🌿</div><div class="client-logo-name">Agri Solutions</div><div class="client-logo-country">Faisalabad, PK</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="sec services-bg" id="services">
+  <div class="svc-head">
+    <span class="eyebrow">What We Offer</span>
+    <h2 class="h2">Everything Your Business<br>Needs in Odoo</h2>
+    <p class="lead">From initial deployment to long-term support — Ventra handles every stage of your Odoo journey.</p>
+  </div>
+  <div class="svc-grid">
+    <div class="svc-card"><div class="svc-icon">⚙️</div><div class="svc-title">Odoo Implementation</div><p class="svc-desc">Full-cycle ERP deployment tailored to your business — from needs analysis to confident go-live.</p><ul class="svc-list"><li>Business process analysis &amp; BRD</li><li>Module configuration &amp; setup</li><li>Data migration from legacy systems</li><li>User training &amp; go-live support</li></ul></div>
+    <div class="svc-card"><div class="svc-icon">🔧</div><div class="svc-title">Custom Development</div><p class="svc-desc">Bespoke Odoo modules and modifications built exactly to fit your unique workflows.</p><ul class="svc-list"><li>Custom module development</li><li>Third-party API integrations</li><li>Workflow &amp; approval automation</li><li>Custom reports &amp; dashboards</li></ul></div>
+    <div class="svc-card"><div class="svc-icon">📄</div><div class="svc-title">Digital Invoicing (e-Invoice)</div><p class="svc-desc">FBR &amp; ZATCA-compliant digital invoicing integrated directly into Odoo Accounting.</p><ul class="svc-list"><li>FBR / ZATCA e-invoice compliance</li><li>Automated GST &amp; WHT calculations</li><li>QR-code invoice generation</li><li>Real-time submission &amp; audit trail</li></ul></div>
+    <div class="svc-card"><div class="svc-icon">🏭</div><div class="svc-title">ERP for Manufacturing</div><p class="svc-desc">Production planning, BOM management, and quality control — all unified in one system.</p><ul class="svc-list"><li>Bill of Materials (BOM) setup</li><li>Work order &amp; MRP management</li><li>Inventory &amp; warehouse control</li><li>Quality checks &amp; traceability</li></ul></div>
+    <div class="svc-card"><div class="svc-icon">🛡️</div><div class="svc-title">Support &amp; Maintenance</div><p class="svc-desc">Dedicated ongoing support to keep your Odoo system running at peak performance.</p><ul class="svc-list"><li>Priority issue response</li><li>Monthly system health checks</li><li>Version upgrades &amp; patches</li><li>Staff refresher training</li></ul></div>
+    <div class="svc-card"><div class="svc-icon">☁️</div><div class="svc-title">Hosting &amp; Migration</div><p class="svc-desc">Secure cloud hosting and seamless data migration across Odoo versions.</p><ul class="svc-list"><li>Odoo.sh &amp; cloud hosting</li><li>v14 → v16 / v17 migration</li><li>SSL, backups &amp; uptime monitoring</li><li>Performance optimization</li></ul></div>
+  </div>
+</section>
+
+<!-- MODULES -->
+<section class="sec modules-bg" id="modules">
+  <div class="mod-intro">
+    <div>
+      <span class="eyebrow">Odoo Modules</span>
+      <h2 class="h2">One Platform,<br>Every Department</h2>
+      <p class="lead">We implement and customize the full Odoo suite — connecting your sales, operations, finance, and people in one unified system.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <div style="background:var(--purple-ultra);border-radius:14px;padding:22px 24px;border:1px solid rgba(124,58,237,0.15)"><div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:36px;color:var(--purple);letter-spacing:-1px">10<span style="font-size:22px;color:var(--purple-light)">+</span></div><div style="font-size:13px;color:var(--gray-600);margin-top:4px">Core modules implemented</div></div>
+      <div style="background:var(--purple);border-radius:14px;padding:22px 24px"><div style="font-family:'Nunito',sans-serif;font-weight:900;font-size:36px;color:white;letter-spacing:-1px">v17</div><div style="font-size:13px;color:rgba(255,255,255,0.6);margin-top:4px">Latest Odoo version supported</div></div>
+    </div>
+  </div>
+  <div class="mod-grid">
+    <div class="mod-card"><div class="mod-top"><div class="mod-icon-wrap">📈</div><div class="mod-name">Sales &amp; CRM</div></div><div class="mod-desc">Manage leads, pipelines, quotations, and customer relationships in one view.</div><div class="mod-tags"><span class="mod-tag">Pipeline</span><span class="mod-tag">Quotations</span><span class="mod-tag">Follow-ups</span></div></div>
+    <div class="mod-card"><div class="mod-top"><div class="mod-icon-wrap">📦</div><div class="mod-name">Inventory &amp; Warehouse</div></div><div class="mod-desc">Real-time stock tracking, multi-warehouse support, and automated reorder rules.</div><div class="mod-tags"><span class="mod-tag">Stock Moves</span><span class="mod-tag">Lot/Serial</span><span class="mod-tag">Valuation</span></div></div>
+    <div class="mod-card"><div class="mod-top"><div class="mod-icon-wrap">🏭</div><div class="mod-name">Manufacturing</div></div><div class="mod-desc">Bills of Materials, work orders, MRP planning, and quality control on the shop floor.</div><div class="mod-tags"><span class="mod-tag">BOM</span><span class="mod-tag">Work Orders</span><span class="mod-tag">MRP</span></div></div>
+    <div class="mod-card"><div class="mod-top"><div class="mod-icon-wrap">💰</div><div class="mod-name">Accounting</div></div><div class="mod-desc">Full double-entry accounting, bank reconciliation, and FBR / ZATCA e-invoicing.</div><div class="mod-tags"><span class="mod-tag">Journal Entries</span><span class="mod-tag">Tax/GST</span><span class="mod-tag">FBR e-Invoice</span></div></div>
+    <div class="mod-card"><div class="mod-top"><div class="mod-icon-wrap">👥</div><div class="mod-name">HR &amp; Payroll</div></div><div class="mod-desc">Employee records, leave management, attendance, and automated monthly payroll.</div><div class="mod-tags"><span class="mod-tag">Payslips</span><span class="mod-tag">Leave Mgmt</span><span class="mod-tag">EOBI/GOSI</span></div></div>
+    <div class="mod-card"><div class="mod-top"><div class="mod-icon-wrap">🛒</div><div class="mod-name">Purchase</div></div><div class="mod-desc">RFQs, purchase orders, vendor pricelists, and GRN — all linked to inventory.</div><div class="mod-tags"><span class="mod-tag">RFQ</span><span class="mod-tag">PO Approval</span><span class="mod-tag">GRN</span></div></div>
+    <div class="mod-card"><div class="mod-top"><div class="mod-icon-wrap">🌐</div><div class="mod-name">eCommerce</div></div><div class="mod-desc">Launch an integrated online store connected to inventory and payment gateways.</div><div class="mod-tags"><span class="mod-tag">Online Store</span><span class="mod-tag">Payments</span><span class="mod-tag">Catalog</span></div></div>
+    <div class="mod-card"><div class="mod-top"><div class="mod-icon-wrap">📋</div><div class="mod-name">Project Management</div></div><div class="mod-desc">Kanban boards, Gantt charts, task tracking, and timesheets for client projects.</div><div class="mod-tags"><span class="mod-tag">Kanban</span><span class="mod-tag">Gantt</span><span class="mod-tag">Timesheets</span></div></div>
+    <div class="mod-card"><div class="mod-top"><div class="mod-icon-wrap">🖥️</div><div class="mod-name">Point of Sale</div></div><div class="mod-desc">Fast retail checkout with barcode scanning, multiple payment modes, and offline support.</div><div class="mod-tags"><span class="mod-tag">Barcode</span><span class="mod-tag">Offline Mode</span><span class="mod-tag">Multi-payment</span></div></div>
+    <div class="mod-card"><div class="mod-top"><div class="mod-icon-wrap">🚗</div><div class="mod-name">Fleet Management</div></div><div class="mod-desc">Vehicle tracking, service schedules, fuel logs, and driver assignment — all in Odoo.</div><div class="mod-tags"><span class="mod-tag">Vehicles</span><span class="mod-tag">Maintenance</span><span class="mod-tag">Fuel Logs</span></div></div>
+  </div>
+</section>
+
+<!-- DIGITAL INVOICING -->
+<section class="sec inv-bg" id="invoicing">
+  <div class="inv-inner">
+    <div>
+      <span class="eyebrow">Digital Invoicing</span>
+      <h2 class="h2">FBR-Compliant e-Invoicing,<br>Built Into Odoo</h2>
+      <p class="lead">Stay ahead of Pakistan's digital invoicing mandate. Our solution connects Odoo directly with FBR — fully automated, fully compliant.</p>
+      <div class="inv-feat-list">
+        <div class="inv-feat"><div class="inv-feat-ic">📡</div><div class="inv-feat-tx"><h4>Real-time FBR Submission</h4><p>Invoices auto-submitted to FBR portal at the moment of confirmation — no manual steps.</p></div></div>
+        <div class="inv-feat"><div class="inv-feat-ic">🔒</div><div class="inv-feat-tx"><h4>GST, WHT &amp; STRN Automation</h4><p>All tax calculations handled automatically — zero errors, full audit trail.</p></div></div>
+        <div class="inv-feat"><div class="inv-feat-ic">📱</div><div class="inv-feat-tx"><h4>QR-Code PDF Invoices</h4><p>Branded, shareable invoices with FBR QR verification generated instantly.</p></div></div>
+      </div>
+    </div>
+    <div class="inv-mock">
+      <div class="inv-mock-head"><div class="inv-mock-title">Ventra · e-Invoice</div><div class="inv-mock-badge">✓ FBR Verified</div></div>
+      <div class="inv-r"><span class="inv-r-l">Invoice No.</span><span class="inv-r-v">INV-2025-00847</span></div>
+      <div class="inv-r"><span class="inv-r-l">Client</span><span class="inv-r-v">Al-Noor Trading Co.</span></div>
+      <div class="inv-r"><span class="inv-r-l">STRN</span><span class="inv-r-v">3277499000001</span></div>
+      <div class="inv-divider"></div>
+      <div class="inv-r"><span class="inv-r-l">Subtotal</span><span class="inv-r-v">PKR 85,000</span></div>
+      <div class="inv-r"><span class="inv-r-l">GST (18%)</span><span class="inv-r-v">PKR 15,300</span></div>
+      <div class="inv-r"><span class="inv-r-l">WHT (3%)</span><span class="inv-r-v">– PKR 2,550</span></div>
+      <div class="inv-total"><span class="inv-total-l">Total Payable</span><span class="inv-total-v">PKR 97,750</span></div>
+      <div class="inv-foot"><span class="inv-foot-t">Submitted to FBR · 12 Dec 2025, 09:41</span><span class="inv-foot-btn">Download PDF →</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bg">
+  <div class="stats-inner">
+    <div class="stat-box"><div class="stat-big">50<span>+</span></div><div class="stat-sub">Live Implementations</div></div>
+    <div class="stat-box"><div class="stat-big">15<span>+</span></div><div class="stat-sub">Industries Served</div></div>
+    <div class="stat-box"><div class="stat-big">98<span>%</span></div><div class="stat-sub">Client Satisfaction</div></div>
+    <div class="stat-box"><div class="stat-big">5<span>yr</span></div><div class="stat-sub">Avg. Partnership</div></div>
+  </div>
+</div>
+
+<!-- WHY VENTRA -->
+<section class="sec why-bg" id="why">
+  <div class="why-inner">
+    <div>
+      <span class="eyebrow">Why Ventra</span>
+      <h2 class="h2">We Don't Just<br>Install Odoo.</h2>
+      <p class="lead">Many firms offer Odoo setup — few take the time to deeply understand your business before touching the system.</p>
+      <div class="why-list">
+        <div class="why-item"><div class="why-num">1</div><div><h4>Deep Local Expertise</h4><p>We understand Pakistan's FBR mandate, ZATCA compliance, local payroll rules, and real business workflows.</p></div></div>
+        <div class="why-item"><div class="why-num">2</div><div><h4>Full-Spectrum Coverage</h4><p>From Sales and Inventory to HR, Payroll, and Accounting — we implement every module you actually need.</p></div></div>
+        <div class="why-item"><div class="why-num">3</div><div><h4>Long-Term Partnership</h4><p>We stay with you post go-live — upgrades, new modules, training, and growth support included.</p></div></div>
+      </div>
+    </div>
+    <div class="why-visual-card">
+      <div style="font-family:'Nunito',sans-serif;font-size:18px;font-weight:900;color:var(--text);margin-bottom:6px">Certifications &amp; Stack</div>
+      <div style="font-size:13px;color:var(--gray-600);margin-bottom:20px">Technologies and standards we're qualified in</div>
+      <div class="cert-row">
+        <span class="cert-chip dark">Odoo 16</span><span class="cert-chip dark">Odoo 17</span>
+        <span class="cert-chip">FBR e-Invoice</span><span class="cert-chip">ZATCA Phase 2</span>
+        <span class="cert-chip">Odoo.sh</span><span class="cert-chip">AWS Hosting</span>
+        <span class="cert-chip">Python/OWL</span><span class="cert-chip">PostgreSQL</span>
+      </div>
+      <div style="margin-top:28px;padding-top:24px;border-top:1px solid var(--gray-200)">
+        <div style="font-size:13px;font-weight:600;color:var(--gray-800);margin-bottom:14px">Regions We Serve</div>
+        <div style="display:flex;flex-wrap:wrap;gap:16px">
+          <div style="font-size:13px;color:var(--gray-600)">🇵🇰 Pakistan</div>
+          <div style="font-size:13px;color:var(--gray-600)">🇸🇦 Saudi Arabia</div>
+          <div style="font-size:13px;color:var(--gray-600)">🇦🇪 UAE</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="sec process-bg" id="process">
+  <div class="process-head">
+    <span class="eyebrow">How We Work</span>
+    <h2 class="h2">A Proven 4-Step Process</h2>
+    <p class="lead">From the first conversation to a confident go-live — our structured approach means nothing is missed.</p>
+  </div>
+  <div class="steps">
+    <div class="step"><div class="step-num">01</div><div class="step-title">Discovery</div><p class="step-desc">We map your processes, identify gaps, and build a detailed implementation plan tailored to your business.</p></div>
+    <div class="step"><div class="step-num">02</div><div class="step-title">Configuration</div><p class="step-desc">Odoo is configured, customized, and integrated with your existing data and tools — no generic setup.</p></div>
+    <div class="step"><div class="step-num filled">03</div><div class="step-title">Training</div><p class="step-desc">Hands-on training for every user role so your team is confident from day one — not dependent on us.</p></div>
+    <div class="step"><div class="step-num filled">04</div><div class="step-title">Go-Live &amp; Support</div><p class="step-desc">We manage the launch and remain on-hand to resolve any issues quickly and keep your system healthy.</p></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-bg">
+  <div class="cta-glow"></div>
+  <div style="position:relative;z-index:1">
+    <span class="eyebrow" style="color:rgba(255,255,255,0.6)">Get Started</span>
+    <h2 class="h2">Ready to Transform<br>Your Operations?</h2>
+    <p class="cta-lead">Book a free 30-minute consultation. No pressure, just a clear roadmap for your Odoo journey.</p>
+    <div class="cta-acts">
+      <a class="btn-white" href="#contact">Schedule Free Demo →</a>
+      <a class="btn-ghost" href="tel:+920000000000">📞 Call Us Now</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="sec contact-bg" id="contact">
+  <div class="contact-inner">
+    <div>
+      <span class="eyebrow">Contact Us</span>
+      <h2 class="h2">Let's Talk About<br>Your Project</h2>
+      <p class="lead" style="margin-bottom:40px">Our Odoo specialists are ready to help you plan your implementation or answer any questions.</p>
+      <div class="contact-det"><div class="contact-ic">📍</div><div><h4>Office</h4><p>Karachi, Pakistan</p></div></div>
+      <div class="contact-det"><div class="contact-ic">📧</div><div><h4>Email</h4><p>info@ventratechnology.pk</p></div></div>
+      <div class="contact-det"><div class="contact-ic">📞</div><div><h4>Phone / WhatsApp</h4><p>+92 300 000 0000</p></div></div>
+    </div>
+    <div class="contact-form">
+      <div style="margin-bottom:24px"><div style="font-family:'Nunito',sans-serif;font-size:21px;font-weight:900;margin-bottom:4px">Request a Free Consultation</div><div style="font-size:13px;color:var(--gray-400)">We respond within 24 hours.</div></div>
+      <div class="fr">
+        <div class="fg"><label>Your Name</label><input type="text" placeholder="e.g. Ahmed Khan"></div>
+        <div class="fg"><label>Company</label><input type="text" placeholder="Company name"></div>
+      </div>
+      <div class="fg"><label>Email Address</label><input type="email" placeholder="you@company.com"></div>
+      <div class="fg"><label>Service Needed</label><select><option value="">Select a service...</option><option>Odoo Implementation</option><option>Digital / e-Invoicing (FBR)</option><option>Custom Development</option><option>Support &amp; Maintenance</option><option>Odoo Hosting / Migration</option><option>Other</option></select></div>
+      <div class="fg"><label>Message</label><textarea placeholder="Tell us about your business and what you need..."></textarea></div>
+      <button class="btn-p" style="width:100%;justify-content:center;font-size:15px" onclick="alert('Thank you! We will contact you shortly.')">Send Request →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a class="logo" href="#"><div class="logo-mark">VT</div><div class="logo-text" style="color:white">Ventra <span>Technology</span></div></a>
+      <p>Pakistan's trusted Odoo implementation partner — helping businesses grow smarter across Pakistan and the Gulf region.</p>
+    </div>
+    <div class="footer-col"><h4>Services</h4><ul><li><a href="#">Odoo Implementation</a></li><li><a href="#">Digital Invoicing</a></li><li><a href="#">Custom Development</a></li><li><a href="#">Support &amp; AMC</a></li><li><a href="#">Odoo Hosting</a></li></ul></div>
+    <div class="footer-col"><h4>Company</h4><ul><li><a href="#">About Ventra</a></li><li><a href="#">Our Team</a></li><li><a href="#">Case Studies</a></li><li><a href="#">Blog</a></li></ul></div>
+    <div class="footer-col"><h4>Connect</h4><ul><li><a href="#">LinkedIn</a></li><li><a href="#">WhatsApp</a></li><li><a href="#">info@ventratechnology.pk</a></li></ul></div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 Ventra Technology Pvt Ltd. All rights reserved.</div>
+    <div class="footer-bdgs"><span class="footer-bdg">Odoo Partner</span><span class="footer-bdg">FBR e-Invoice</span><span class="footer-bdg">ZATCA Ready</span></div>
+  </div>
+</footer>
+
+</body>
+</html>
